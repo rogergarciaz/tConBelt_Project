@@ -7,7 +7,7 @@ class Home extends React.Component {
             
             <div>
              <div>
-               <img src="images/avatar-01.jpg" alt="AVATAR"/>
+               <img src="images/logo.jpg" alt="AVATAR"/>
              </div>
              <StepSlider />
             </div>
