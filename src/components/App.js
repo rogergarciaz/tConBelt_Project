@@ -17,8 +17,7 @@ const App = () =>
     <div>
       <Navigation />
 
-      <hr/>
-
+      <Route exact path={routes.LANDING} component={SignInPage} />
       <Route exact path={routes.CONTROL} component={ControlPage} />
       <Route exact path={routes.SIGN_IN} component={SignInPage} />
       <Route exact path={routes.DATA} component={Data} />
