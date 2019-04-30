@@ -64,9 +64,6 @@ class StepSlider extends React.Component {
                // do nothing
            }      
           });
-          firebase.database().ref('data').on('value', function(snapshot){
-            console.log(snapshot.val())
-          })
 }
 
 componentWillUnmount (){
