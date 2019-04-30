@@ -14,6 +14,7 @@ const styles = {
   },
 };
 let value_slider;
+
 class StepSlider extends React.Component {
   constructor(props){
     super(props)
@@ -33,9 +34,7 @@ class StepSlider extends React.Component {
     const that = this
         firebase.database().ref('commands').on('value', function(snapshot) {
            that.setState({update :snapshot.val()})
-           console.log(that.state.update)
            value_slider = that.state.update.DIN3.toString()+that.state.update.DIN2.toString()+that.state.update.DIN1.toString()
-           console.log(value_slider)
            switch(value_slider){
                case "000":
                that.setState({value:0})
@@ -63,13 +62,13 @@ class StepSlider extends React.Component {
                break;
                default:
                // do nothing
-           }
-           
+           }      
           });
           firebase.database().ref('data').on('value', function(snapshot){
             console.log(snapshot.val())
           })
 }
+
 componentWillUnmount (){
     firebase.database().ref('commands').update({
         DIN1:0,
@@ -129,7 +128,7 @@ onSlidingComplete = async (value)=>{
             DIN3:1,
         }})
         break;
-        case 60:
+        case 63:
         await this.setState({update : {
             DIN1:1,
             DIN2:1,
@@ -158,7 +157,6 @@ onSlidingComplete = async (value)=>{
         />
         <h2>Frecuencia: {this.state.value} Hz</h2>
       </div>
-      
     ); 
   }
 }

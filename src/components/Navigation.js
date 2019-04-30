@@ -22,8 +22,8 @@ const NavigationAuth = () =>
   <ul>
     <li style={divStyle}><Link to={routes.CONTROL}>Control</Link></li>
     <li style={divStyle}><Link to={routes.DATA}>Datos</Link></li>
-    <li style={divStyle}><Link to={routes.SIGN_IN}><SignOutButton /></Link></li>
     <li style={divStyle}><Link to={routes.LANDING}>tConBelt</Link></li>
+    <li style={divStyle}><Link to={routes.SIGN_IN}><SignOutButton /></Link></li>
   </ul>
 
 const NavigationNonAuth = () =>
@@ -31,7 +31,5 @@ const NavigationNonAuth = () =>
  <li style={divStyle}><Link to={routes.SIGN_IN}>Ingresar</Link></li>
  <li style={divStyle}><Link to={routes.LANDING}>tConBelt</Link></li>
 </ul>
-  
-  
 
 export default Navigation;

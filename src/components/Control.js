@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Home from './Home'
  
 class ControlPage extends Component {
-  // El constructor siempre va de primero
 
    render() {
     
@@ -19,7 +18,5 @@ class ControlPage extends Component {
      );
   }
 }
+
 export default ControlPage;
-
-
-
