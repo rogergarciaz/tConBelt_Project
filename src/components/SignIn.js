@@ -12,6 +12,11 @@ const byPropKey = (propertyName, value) => () => ({
   [propertyName]: value,
 });
 
+const pStyle = {
+  width:'100px',
+  height:'100px'
+};
+
 const INITIAL_STATE = {
   email: '',
   password: '',
@@ -63,12 +68,11 @@ class SignInForm extends Component {
             <div className="container-login100">
               <div className="wrap-login100 p-t-85 p-b-20">
                 <form className="login100-form validate-form" onSubmit={this.onSubmit}>
-                  <span className="login100-form-title p-b-70">
-                    Bienvenido
+                <div className="login100-form-title p-b-70">
+                  <span>
+                    Bienvenido a
                   </span>
-
-                  <div className="login100-form-title p-b-70">
-                   <img src="images/logo.jpg" alt="AVATAR"/>
+                   <img className="m-l-10" style={pStyle} src="images/logo.jpg" alt="AVATAR"/>
                   </div>
                        
                   <div className="wrap-input100 validate-input m-t-85 m-b-35" data-validate = "Ingrese usuario">
