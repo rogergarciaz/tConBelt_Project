@@ -39,7 +39,7 @@ class LandingPage extends React.Component {
               </div>
 
               <div className="m-l-10">
-             <a href="files/PF_Instructivo_201830.pdf" download="tConBelt_Manual_Usuario">
+             <a href="../../public/files/PF_Instructivo_201830.pdf" download="tConBelt_Manual_Usuario.pdf">
               <button className="btn btn-success" >
               Descargar Manual de Usuario
               </button>

@@ -26,6 +26,9 @@ class StepSlider extends React.Component {
   }
 
   handleChange = (event, value) => {
+    if(value === 63){
+      value = 60;
+    }
     this.setState({ value });
     this.onSlidingComplete(value);
   };
@@ -125,7 +128,7 @@ onSlidingComplete = async (value)=>{
             DIN3:1,
         }})
         break;
-        case 63:
+        case 60:
         await this.setState({update : {
             DIN1:1,
             DIN2:1,
@@ -140,7 +143,8 @@ onSlidingComplete = async (value)=>{
 
   render() {
     const { classes } = this.props;
-    const { value } = this.state;
+    var { value } = this.state;
+    
 
     return (
       <div className={classes.root}>
