@@ -70,9 +70,8 @@ class SignInForm extends Component {
                 <form className="login100-form validate-form" onSubmit={this.onSubmit}>
                 <div className="login100-form-title p-b-70">
                   <span>
-                    Bienvenido a
+                    Bienvenidos
                   </span>
-                   <img className="m-l-10" style={pStyle} src="images/logo.jpg" alt="AVATAR"/>
                   </div>
                        
                   <div className="wrap-input100 validate-input m-t-85 m-b-35" data-validate = "Ingrese usuario">

@@ -28,7 +28,7 @@ class Data extends React.Component{
     let vca = []
     let date = []
     let sensor = []
-    firebase.database().ref('data').once('value',async function(snapshot){
+    firebase.database().ref('data').on('value',async function(snapshot){
       let data = await snapshot.val()
       data = await Object.values(data)
       data.forEach(element => {
