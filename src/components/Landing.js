@@ -19,18 +19,18 @@ class LandingPage extends React.Component {
               </h4>  
              
              <div className="login100-form-title p-b-70">
-              <a href="../files/PF_Instructivo_201830.pdf" download="tConBelt_Android">
-              <button className="btn btn-success" >
-              Descargar APP Android
-              </button>
-              </a>
-
-              <div className="m-l-10">
              <a href="../files/PF_Instructivo_201830.pdf" download="tConBelt_Manual_Usuario.pdf">
               <button className="btn btn-success" >
               Descargar Manual de Usuario
               </button>
             </a>            
+            
+            <div className="m-l-10">
+              <a href="../files/PF_Instructivo_201830.pdf" download="tConBelt_Android">
+              <button className="btn btn-success" >
+              Descargar APP Android
+              </button>
+              </a>
             </div>
             </div>
             </div>

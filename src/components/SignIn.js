@@ -12,11 +12,6 @@ const byPropKey = (propertyName, value) => () => ({
   [propertyName]: value,
 });
 
-const pStyle = {
-  width:'100px',
-  height:'100px'
-};
-
 const INITIAL_STATE = {
   email: '',
   password: '',

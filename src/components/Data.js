@@ -65,6 +65,32 @@ class Data extends React.Component{
     })    
   }
   render() {
+    const datos1dos = {
+      labels: this.state.date, //date: "2019-04-25 11:28:52.319398" from firebase
+      datasets: [
+      {
+        label: 'Corriente A',
+        fill: false,
+        lineTension: 0.1,
+        backgroundColor: 'rgba(90,172,172)',
+        borderColor: 'rgba(90,172,172)',
+        borderCapStyle: 'butt',
+        borderDash: [],
+        borderDashOffset: 0.0,
+        borderJoinStyle: 'miter',
+        pointBorderColor: 'rgba(90,172,172)',
+        pointBackgroundColor: '#fff',
+        pointBorderWidth: 1,
+        pointHoverRadius: 5,
+        pointHoverBackgroundColor: 'rgba(90,172,172)',
+        pointHoverBorderColor: 'rgba(90,172,172)',
+        pointHoverBorderWidth: 2,
+        pointRadius: 1,
+        pointHitRadius: 10,
+        data: this.state.c1 //C1: 0 C2: 0 C3: 0 Freq: 32768 PAT: 0 Sensor: 0 VAB: 0 VBC: 0 VCA: 0
+      },
+      ]
+    };
     return (
       <div className="wrap-login100 p-t-85 p-b-20">
         <LineGraph data={datos1}  />
