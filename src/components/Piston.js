@@ -33,7 +33,7 @@ class Piston extends React.Component {
                 await this.setState({PISTON:!this.state.PISTON})
                 await firebase.database().ref('/').update({PISTON:this.state.PISTON ? 1:0})
                 }}>
-            {this.state.PISTON ?'Bajar Pistón':'Subir Pistón'}
+            {this.state.PISTON ?'Desactivar Pistón':'Activar Pistón'}
             </button>
             
             </div>

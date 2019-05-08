@@ -28,9 +28,11 @@ class Data extends React.Component{
     let vca = []
     let date = []
     let sensor = []
-    firebase.database().ref('data').on('value',async function(snapshot){
+    firebase.database().ref('data').limitToLast(6).on('value',async function(snapshot){
       let data = await snapshot.val()
+      console.log('data1 '+ data)
       data = await Object.values(data)
+      console.log('data2 '+ data)
       data.forEach(element => {
           c1.push(element.C1)
           c2.push(element.C2)
@@ -49,24 +51,11 @@ class Data extends React.Component{
       await that.setState({vca : vca})
       await that.setState({date:date})
       await that.setState({sensor:sensor})
-    })
-    firebase.database().ref('data').limitToLast(1).on('value', async function(snapshot){
-      let data_retrieved = await snapshot.val()
-      data_retrieved = await Object.values(data_retrieved)
-      await that.setState({c1:that.state.c1.push(data_retrieved[0].C1)})
-      await that.setState({c2:that.state.c2.push(data_retrieved[0].C2)})
-      await that.setState({c3:that.state.c3.push(data_retrieved[0].C3)})
-      await that.setState({vab:that.state.vab.push(data_retrieved[0].VAB)})
-      await that.setState({vbc:that.state.vbc.push(data_retrieved[0].VBC)})
-      await that.setState({vca:that.state.vca.push(data_retrieved[0].VCA)})
-      await that.setState({date:that.state.date.push(data_retrieved[0].date)})
-      await that.setState({sensor : that.state.sensor.push(data_retrieved[0].Sensor)})
-      console.log(that.state)
     })    
   }
   render() {
-    const datos1dos = {
-      labels: this.state.date, //date: "2019-04-25 11:28:52.319398" from firebase
+    const datos1 = {
+      labels: this.state.date.toString(), //date: "2019-04-25 11:28:52.319398" from firebase
       datasets: [
       {
         label: 'Corriente A',
@@ -101,7 +90,7 @@ class Data extends React.Component{
   }
 }
 
-const datos1 = {
+const datos1d = {
   labels: Data.date, //date: "2019-04-25 11:28:52.319398" from firebase
   datasets: [
   {

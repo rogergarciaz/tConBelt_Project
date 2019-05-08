@@ -12,7 +12,16 @@ class Retro extends React.Component {
       super(props)
       this.state = {
         value:0,
-        update:{DIN1:false,DIN2:false,DIN3:false,PISTON:false}
+        update:{DIN3:0,DIN2:0,DIN1:0,PISTON:0},
+        data : [],
+        c1 : [],
+        c2 : [],
+        c3 : [],
+        vab : [],
+        vbc : [],
+        vca : [],
+        date : [],
+        sensor:[]
       }
       
     }
@@ -21,48 +30,100 @@ class Retro extends React.Component {
       const that = this
           firebase.database().ref('PLC').on('value', function(snapshot) {
              that.setState({update :snapshot.val()})
-             let value_slider = [that.state.update.DIN3, that.state.update.DIN2, that.state.update.DIN1]
-             switch(value_slider){
-                 case [false,false,false]:
+             let value_lab = that.state.update.DIN3.toString()+that.state.update.DIN2.toString()+that.state.update.DIN1.toString()
+             switch(value_lab){
+                 case  "000":
                  that.setState({value:0})
                  break;
-                 case [false,false,true]:
+                 case "001":
                  that.setState({value:9})
                  break;
-                 case [false,true,false]:
+                 case "010":
                  that.setState({value:18})
                  break;
-                 case [false,true,true]:
+                 case "011":
                  that.setState({value:27})
                  break;
-                 case [true,false,false]:
+                 case "100":
                  that.setState({value:36})
                  break;
-                 case [true,false,true]:
+                 case "101":
                  that.setState({value:45})
                  break;
-                 case [true,true,false]:
+                 case "110":
                  that.setState({value:54})
                  break;
-                 case [true,true,true]:
+                 case "111":
                  that.setState({value:60})
                  break;
                  default:
                  // do nothing
              }      
             });
+
+            firebase.database().ref('data').limitToLast(1).on('value',async function(snapshot){
+              let c1 = []
+              let c2 = []
+              let c3 = []
+              let vab = []
+              let vbc = []
+              let vca = []
+              let date = []
+              let sensor = []
+              let data = await snapshot.val()
+              data = await Object.values(data)
+              data.forEach(element => {
+                  c1.push(element.C1)
+                  c2.push(element.C2)
+                  c3.push(element.C3)
+                  vab.push(element.VAB)
+                  vbc.push(element.VBC)
+                  vca.push(element.VCA)
+                  date.push(element.date)
+                  sensor.push(element.Sensor)
+              });
+              await that.setState({c1 : c1})
+              await that.setState({c2 : c2})
+              await that.setState({c3 : c3})
+              await that.setState({vab : vab})
+              await that.setState({vbc : vbc})
+              await that.setState({vca : vca})
+              await that.setState({date:date})
+              await that.setState({sensor:sensor})
+              console.log(that.state.date)
+            })   
   }
-  render() {         
-        
+  render() {     
     return (
         <div >
+        <h3>Los parámetros de la banda transportadora son: </h3>
         <h4 style={column}>
-            En el Laboratorio la banda se desplaza a: {this.state.value}
+          Una frecuencia de {this.state.value} [Hz]
         </h4>
         <h4 style={column}>
-            En el laboratorio el piston se encuentra: {(this.state.update.PISTON) ? 'Activo' : 'Desactivado'}
+          Una corriente de línea A de {this.state.c1} [A]
         </h4>
-        
+        <h4 style={column}>
+          Una corriente de línea B de {this.state.c2} [A]
+        </h4>
+        <h4 style={column}>
+          Una corriente de línea C de {this.state.c3} [A]
+        </h4>
+        <h4 style={column}>
+          Un voltaje A-B de {this.state.vab} [V]
+        </h4>
+        <h4 style={column}>
+         Un voltaje B-C de {this.state.vbc} [V]
+        </h4>
+        <h4 style={column}>
+          Un voltaje C-A de {this.state.vca} [V]
+        </h4>
+        <h4 style={column}>
+          Una velocidad de {this.state.sensor} RPM
+        </h4>
+        <h4 style={column}>
+          El piston {(this.state.update.PISTON===1) ? 'Activado' : 'Desactivado'}
+        </h4>
         </div>
     );
 }
