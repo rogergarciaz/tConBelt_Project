@@ -7,7 +7,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import Retro from './Retro';
+import {retro} from './Retro'
 
 const CustomTableCell = withStyles(theme => ({
   head: {
@@ -42,18 +42,19 @@ function createData(name, valor, unidad) {
 }
 
 const rows = [
-  createData('Línea A', 159, '[A]'),
-  createData('Línea B', 159, '[A]'),
-  createData('Línea C', 159,'[A]'),
-  createData('Voltaje A-B', 159, '[V]'),
-  createData('Voltaje B-C', 159, '[V]'),
-  createData('Voltaje C-A', 159, '[V]'),
-  createData('Sensor', 159, '[RPM]'),
+  createData('Frecuencia', retro.value, '[Hz]'),
+  createData('Línea A', retro.c1, '[A]'),
+  createData('Línea B', retro.c2, '[A]'),
+  createData('Línea C', retro.c3,'[A]'),
+  createData('Voltaje A-B', retro.vab, '[V]'),
+  createData('Voltaje B-C', retro.vbc, '[V]'),
+  createData('Voltaje C-A', retro.vca, '[V]'),
+  createData('Sensor', retro.sensor, '[RPM]'),
+  createData('Pistón', ((retro.piston===1 )? 'Activado' : 'Desactivado')),
 ];
 
 function CustomizedTable(props) {
   const { classes } = props;
-
   return (
     <Paper className={classes.root}>
       <Table className={classes.table}>
@@ -62,7 +63,6 @@ function CustomizedTable(props) {
             <CustomTableCell>Parámetro</CustomTableCell>
             <CustomTableCell align="right">Valor</CustomTableCell>
             <CustomTableCell align="right">Unidad</CustomTableCell>
-            <Retro/>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -77,8 +77,7 @@ function CustomizedTable(props) {
           ))}
         </TableBody>
       </Table>
-    </Paper>
-    
+    </Paper> 
   );
 }
 

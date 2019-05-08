@@ -2,11 +2,6 @@ import React from 'react';
 import firebase from '@firebase/app';
 require('firebase/database')
 
-const column = {
-    flex: '33.33%',
-    padding: '10px'
-  };
-
 class Retro extends React.Component {
     constructor(props){
       super(props)
@@ -22,8 +17,7 @@ class Retro extends React.Component {
         vca : [],
         date : [],
         sensor:[]
-      }
-      
+      } 
     }
   
     componentDidMount = () => {
@@ -90,43 +84,26 @@ class Retro extends React.Component {
               await that.setState({vca : vca})
               await that.setState({date:date})
               await that.setState({sensor:sensor})
-              console.log(that.state.date)
+              console.log(that.state.date) 
             })   
   }
-  render() {     
+  render() {    
     return (
         <div >
-        <h3>Los parámetros de la banda transportadora son: </h3>
-        <h4 style={column}>
-          Una frecuencia de {this.state.value} [Hz]
-        </h4>
-        <h4 style={column}>
-          Una corriente de línea A de {this.state.c1} [A]
-        </h4>
-        <h4 style={column}>
-          Una corriente de línea B de {this.state.c2} [A]
-        </h4>
-        <h4 style={column}>
-          Una corriente de línea C de {this.state.c3} [A]
-        </h4>
-        <h4 style={column}>
-          Un voltaje A-B de {this.state.vab} [V]
-        </h4>
-        <h4 style={column}>
-         Un voltaje B-C de {this.state.vbc} [V]
-        </h4>
-        <h4 style={column}>
-          Un voltaje C-A de {this.state.vca} [V]
-        </h4>
-        <h4 style={column}>
-          Una velocidad de {this.state.sensor} RPM
-        </h4>
-        <h4 style={column}>
-          El piston {(this.state.update.PISTON===1) ? 'Activado' : 'Desactivado'}
-        </h4>
+
         </div>
     );
-}
+  }
 }
 
+export const retro = ()=> {
+  return({c1:this.state.c1,
+    c2:this.state.c2,
+    c3:this.state.c3,
+    vab:this.state.vab,
+    vbc:this.state.vbc,
+    vca:this.state.vca,
+    sensor:this.state.sensor,
+    piston:this.state.update.PISTON,}) 
+}; 
 export default Retro;

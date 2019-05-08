@@ -17,8 +17,9 @@ class ControlPage extends Component {
            <Piston />
            </div>
           </div>
-          <div className="wrap-login100 p-t-85 p-b-20"></div>
+          <div >
           <CustomizedTable/>
+          </div>
           </div>
       </div>
     </div>
