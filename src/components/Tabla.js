@@ -39,23 +39,24 @@ function createData(date, c1, c2, c3, vab, vbc, vca, pa, pb, pc, sensor) {
   id += 1;
   return { id, date, c1, c2, c3, vab, vbc, vca, pa, pb, pc, sensor};
 }
-
+const rows=[]
 function CustomizedTable(props) {
   const { classes } = props;
-  const rows = [
-    createData(
-      props.datos.date,
-      props.datos.c1,
-      props.datos.c2,
-      props.datos.c3,
-      props.datos.vab,
-      props.datos.vbc,
-      props.datos.vca,
-      props.datos.pa,
-      props.datos.pb,
-      props.datos.pc,
-      props.datos.sensor),
-  ];
+  for (var i = 0; i < 50; i++) {
+    rows[i]= (createData(
+      props.datos.date[i],
+      props.datos.c1[i],
+      props.datos.c2[i],
+      props.datos.c3[i],
+      props.datos.vab[i],
+      props.datos.vbc[i],
+      props.datos.vca[i],
+      props.datos.pa[i],
+      props.datos.pb[i],
+      props.datos.pc[i],
+      props.datos.sensor[i]))
+  }
+  console.log(rows)
   return (
     <Paper className={classes.root}>
       <Table className={classes.table}>
@@ -80,7 +81,6 @@ function CustomizedTable(props) {
               <CustomTableCell component="th" scope="row">
                 {row.date}
               </CustomTableCell>
-              <CustomTableCell align="right">{row.value}</CustomTableCell>
               <CustomTableCell align="right">{row.c1}</CustomTableCell>
               <CustomTableCell align="right">{row.c2}</CustomTableCell>
               <CustomTableCell align="right">{row.c3}</CustomTableCell>

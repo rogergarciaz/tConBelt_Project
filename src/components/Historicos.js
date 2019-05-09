@@ -1,7 +1,6 @@
 import React from 'react';
 import CustomizedTable from './Tabla';
 import DateRange from './DateRange';
-import DatePicker from 'react-datepicker';
 import firebase from '@firebase/app';
 require('firebase/database')
 
@@ -22,26 +21,11 @@ class Historicos extends React.Component {
             pc : [],
             datos: [],
         }
-        this.PorFecha = this.PorFecha.bind(this);
-        this.applyCallback = this.applyCallback.bind(this);
-    }
-    PorFecha() {
-        this.setState({
-            datos: [{}]
-        })
-    }
-    
-    applyCallback(rangeDate) {
-        var uno =  rangeDate.start.subtract(5, "hours");
-        var dos =  rangeDate.end.subtract(5, "hours");
-        let daa = {
-            start: uno.toISOString(),
-            end: dos.toISOString(),
-        }        
-        uno =  rangeDate.start.add(5, "hours");
-        dos =  rangeDate.end.add(5, "hours");
+    }    
+    componentDidMount = () =>{        
         const that = this
-        firebase.database().ref('data').orderByValue('date').get('value',async function(snapshot){
+        //ref.orderByChild("date").startAt("2017-01-01").endAt("2017-01-31")
+        firebase.database().ref('data').getLast('value',async function(snapshot){
             let c1 = []
             let c2 = []
             let c3 = []
@@ -68,24 +52,18 @@ class Historicos extends React.Component {
                 pc.push(element.PC)
                 sensor.push(element.Sensor)
             });
-            if (data[0].lng === undefined) {
-                this.setState({ datos: [{}] })
-            } else {
-                this.setState({ datos: [{}] })
-                this.setState({ datos: data })
-                await that.setState({c1 : c1})
-                await that.setState({c2 : c2})
-                await that.setState({c3 : c3})
-                await that.setState({vab : vab})
-                await that.setState({vbc : vbc})
-                await that.setState({vca : vca})
-                await that.setState({date:date})
-                await that.setState({pa:pa})
-                await that.setState({pb:pb})
-                await that.setState({pc:pc})
-                await that.setState({sensor:sensor})
-            }
-            })   
+            await that.setState({c1 : c1})
+            await that.setState({c2 : c2})
+            await that.setState({c3 : c3})
+            await that.setState({vab : vab})
+            await that.setState({vbc : vbc})
+            await that.setState({vca : vca})
+            await that.setState({date:date})
+            await that.setState({pa:pa})
+            await that.setState({pb:pb})
+            await that.setState({pc:pc})
+            await that.setState({sensor:sensor})
+        })   
     }
     render() {
         let datos = {
