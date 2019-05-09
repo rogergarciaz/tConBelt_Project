@@ -6,7 +6,7 @@ import {
 import Navigation from './Navigation';
 import ControlPage from './Control';
 import SignInPage from './SignIn';
-import Data from './Data';
+import Historicos from './Historicos';
 import LandingPage from './Landing';
 import * as routes from '../constants/routes';
 import withAuthentication from './withAuthentication';
@@ -19,7 +19,7 @@ const App = () =>
       <Route exact path={routes.LANDING} component={LandingPage} />
       <Route exact path={routes.SIGN_IN} component={SignInPage} />
       <Route exact path={routes.CONTROL} component={ControlPage} />
-      <Route exact path={routes.DATA} component={Data} />
+      <Route exact path={routes.HISTORICOS} component={Historicos} />
     </div>
   </Router>
 

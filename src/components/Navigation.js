@@ -30,7 +30,7 @@ const NavigationAuth = () =>
     <img src="images/logo.jpg" alt="tConBelt" style={pStyle}/>
     </Link></li>
     <li style={divStyle}><Link to={routes.CONTROL}>Control</Link></li>
-    <li style={divStyle}><Link to={routes.DATA}>Datos</Link></li>
+    <li style={divStyle}><Link to={routes.HISTORICOS}>Historicos</Link></li>
     <li style={divStyle}><Link to={routes.LANDING}><SignOutButton /></Link></li>
   </ul>
 

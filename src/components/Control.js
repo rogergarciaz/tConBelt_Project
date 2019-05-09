@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import StepSlider from './Slider';
 import Piston from './Piston';
-import CustomizedTable from './Table'
+import Retro from './Retro';
 
 class ControlPage extends Component {
 
@@ -14,13 +14,13 @@ class ControlPage extends Component {
           <div className="wrap-login100 p-t-85 p-b-20">
            <StepSlider/> 
            <div className="wrap-login100 p-t-85 p-b-20">
-           <Piston />
+             <Piston />
            </div>
           </div>
           <div >
-          <CustomizedTable/>
+            <Retro/>
           </div>
-          </div>
+        </div>
       </div>
     </div>
      );
