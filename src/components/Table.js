@@ -40,21 +40,21 @@ function createData(name, valor, unidad) {
   return { id, name, valor, unidad};
 }
 
-
-
 function CustomizedTable(props) {
   const { classes } = props;
-  console.log('en Table props: ' + props)
   const rows = [
-    createData('Frecuencia',this.props.datos.value , '[Hz]'),
-    createData('Línea A', this.props.datos.c1, '[A]'),
-    createData('Línea B', this.props.datos.c2, '[A]'),
-    createData('Línea C', this.props.datos.c3,'[A]'),
-    createData('Voltaje A-B', this.props.datos.vab, '[V]'),
-    createData('Voltaje B-C', this.props.datos.vbc, '[V]'),
-    createData('Voltaje C-A', this.props.datos.vca, '[V]'),
-    createData('Sensor', this.props.datos.sensor, '[RPM]'),
-    createData('Pistón', ((this.props.datos.piston===1 )? 'Activado' : 'Desactivado')),
+    createData('Frecuencia', props.datos.value , '[Hz]'),
+    createData('Línea A', props.datos.c1, '[A]'),
+    createData('Línea B', props.datos.c2, '[A]'),
+    createData('Línea C', props.datos.c3,'[A]'),
+    createData('Voltaje A-B', props.datos.vab, '[V]'),
+    createData('Voltaje B-C', props.datos.vbc, '[V]'),
+    createData('Voltaje C-A', props.datos.vca, '[V]'),
+    createData('Potencia activa línea A', props.datos.pa, '[W]'),
+    createData('Potencia activa línea B', props.datos.pb, '[W]'),
+    createData('Potencia activa línea C', props.datos.pc, '[W]'),
+    createData('Sensor', props.datos.sensor, '[RPM]'),
+    createData('Pistón', ((props.datos.piston===1 )? 'Activado' : 'Desactivado')),
   ];
   return (
     <Paper className={classes.root}>
@@ -72,7 +72,7 @@ function CustomizedTable(props) {
               <CustomTableCell component="th" scope="row">
                 {row.name}
               </CustomTableCell>
-              <CustomTableCell align="right">{row.value}</CustomTableCell>
+              <CustomTableCell align="right">{row.valor}</CustomTableCell>
               <CustomTableCell align="right">{row.unidad}</CustomTableCell>
             </TableRow>
           ))}
