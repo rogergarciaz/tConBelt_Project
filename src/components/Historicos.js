@@ -22,14 +22,30 @@ class Historicos extends React.Component {
             pa : [],
             pb : [],
             pc : [],
-            datos: [],
+            verTabla : false,
+            datosListos : false,
         }
     }
     
-    componentDidMount = () =>{        
+    //componentDidMount = () =>{        
+    //    const that = this  
+    //}
+
+    applyCallback(rangeDate) {
         const that = this
+        data = {};
+        var uno =  rangeDate.start.subtract(5, "hours");
+        var dos =  rangeDate.end.subtract(5, "hours");
+        data = {
+            start: uno.toISOString(),
+            end: dos.toISOString()
+        }
+        uno =  rangeDate.start.add(5, "hours");
+        dos =  rangeDate.end.add(5, "hours");
+        var inicio = data.start.toString();
+        var final = data.end.toString();
         //firebase.database().ref('data').limitToLast(100);
-        firebase.database().ref('data').orderByChild('date').startAt("2019/5/10 16:59").endAt("2019/5/10 17:0").on("value",async function(snapshot){
+        firebase.database().ref('data').orderByChild('date').startAt(inicio).endAt(final).on("value",async function(snapshot){
             let c1 = []
             let c2 = []
             let c3 = []
@@ -67,22 +83,11 @@ class Historicos extends React.Component {
             await that.setState({pb:pb})
             await that.setState({pc:pc})
             await that.setState({sensor:sensor})
-        })   
-    }
-
-    applyCallback(rangeDate) {
-        data = {};
-        var uno =  rangeDate.start.subtract(5, "hours");
-        var dos =  rangeDate.end.subtract(5, "hours");
-        data = {
-            start: uno.toISOString(),
-            end: dos.toISOString()
-        }
-        uno =  rangeDate.start.add(5, "hours");
-        dos =  rangeDate.end.add(5, "hours");
+        })
+        that.state.c1.length===0?that.setState({datosListos:false}):that.setState({datosListos:true})         
     }
     render() {
-        let datos = {
+        let datos={
             date:this.state.date, 
             c1:this.state.c1, 
             c2:this.state.c2, 
@@ -94,23 +99,28 @@ class Historicos extends React.Component {
             pb:this.state.pb,
             pc:this.state.pc,
             sensor:this.state.sensor
-          }
-          console.log(datos)
+         }
         return (
             <div>
               <div className="p-l-10 p-t-10 p-b-10 p-r-250">
               <div className="p-r-250">
               <div className="p-r-200">
               <Calendar onSelectDate={this.applyCallback}/> 
-                <button className="login100-form-btn m-t-10" onClick={this.componentDidMount}>Buscar</button>
                 </div>
                 </div>
-                </div>           
+                <div className="m-l-250 p-l-250">
+                <div className="m-l-250 ">
+                {this.state.datosListos?<button className="btn btn-success" onClick={async()=>{
+                    await this.setState({verTabla:!this.state.verTabla})}} >
+                {this.state.verTabla?'Mostrar Tabla':'Mostrar Graficas'}
+                </button>:''}
+                </div>
+                </div> 
+                </div>       
                 <div className="p-l-10 p-t-10 p-b-10 p-r-10">
-                 <CustomizedTable datos={datos} />
+                {this.state.datosListos?!this.state.verTabla?<CustomizedTable datos={datos}/>:'Graficas':''}
                 </div>
-                </div>
-                 
+                </div>     
         );
     }
 }
