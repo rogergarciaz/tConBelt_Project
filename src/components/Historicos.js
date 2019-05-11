@@ -21,11 +21,15 @@ class Historicos extends React.Component {
             pc : [],
             datos: [],
         }
-    }    
+    }
+    
     componentDidMount = () =>{        
         const that = this
-        //ref.orderByChild("date").startAt("2017-01-01").endAt("2017-01-31")
-        firebase.database().ref('data').getLast('value',async function(snapshot){
+        //firebase.database().ref('data').limitToLast(100);
+        firebase.database().ref('data').orderByChild('date').startAt("2019/5/10 16:59").endAt("2019/5/10 17:0").on("value",async function(snapshot){
+        //firebase.database().ref("data").orderByChild("date").equalTo("2019/5/10 16:59").on("value", function(snapshot) { 
+        //console.log(snapshot.val());
+        //});
             let c1 = []
             let c2 = []
             let c3 = []
@@ -52,12 +56,12 @@ class Historicos extends React.Component {
                 pc.push(element.PC)
                 sensor.push(element.Sensor)
             });
-            await that.setState({c1 : c1})
-            await that.setState({c2 : c2})
-            await that.setState({c3 : c3})
-            await that.setState({vab : vab})
-            await that.setState({vbc : vbc})
-            await that.setState({vca : vca})
+            await that.setState({c1:c1})
+            await that.setState({c2:c2})
+            await that.setState({c3:c3})
+            await that.setState({vab:vab})
+            await that.setState({vbc:vbc})
+            await that.setState({vca:vca})
             await that.setState({date:date})
             await that.setState({pa:pa})
             await that.setState({pb:pb})
@@ -79,15 +83,22 @@ class Historicos extends React.Component {
             pc:this.state.pc,
             sensor:this.state.sensor
           }
+          console.log(datos)
         return (
-            <div>
+            <div >
+                <div className="wrap-input100 validate-input m-t-85 m-b-35">
+                <input className="input100" type="text" placeholder="Ingrese fecha de Inicio '2019/5/9 19:11'" ref="name" />
+                <br />
+                <input className="input100" type="text" placeholder="Ingrese fecha de Fin arriba en vez de ' van comillas " ref="name" />
+                <br />
+                <button className="login100-form-btn" onClick={this.componentDidMount}>Buscar</button>
+                </div>
                 <div className="container-login100">
                  <CustomizedTable datos={datos} />
                 </div>
                 <div className="container-login100">
                  <DateRange/>
-                </div>
-                
+                </div>            
             </div>
         );
     }

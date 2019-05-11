@@ -42,7 +42,8 @@ function createData(date, c1, c2, c3, vab, vbc, vca, pa, pb, pc, sensor) {
 const rows=[]
 function CustomizedTable(props) {
   const { classes } = props;
-  for (var i = 0; i < 50; i++) {
+  id=0;
+  for (var i = 0; i < 10; i++) {
     rows[i]= (createData(
       props.datos.date[i],
       props.datos.c1[i],
@@ -56,7 +57,6 @@ function CustomizedTable(props) {
       props.datos.pc[i],
       props.datos.sensor[i]))
   }
-  console.log(rows)
   return (
     <Paper className={classes.root}>
       <Table className={classes.table}>

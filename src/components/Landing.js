@@ -9,15 +9,19 @@ class LandingPage extends React.Component {
     render(){
         return (
           <div>
+            <br />
             <span className="login100-form-title b-70p-">
                tConBelt  
              </span>
+             <br />
+             <br />
              <h4 style={column}>
               Somos el sistema de gestión y telegestión de la banda transportadora del Laboratorio de Automatización Industrial de la Universidad del Norte.
               A continuación se encuentran los enlaces a la app tanto para el sistema operatvio Android como IOS. 
               Se encuentra también anexo un enlace al manual de ususario. 
               </h4>  
-             
+              <br />
+              <br />
              <div className="login100-form-title p-b-70">
              <a href="../files/PF_Instructivo_201830.pdf" download="tConBelt_Manual_Usuario.pdf">
               <button className="btn btn-success" >
