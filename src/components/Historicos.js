@@ -1,6 +1,6 @@
 import React from 'react';
 import CustomizedTable from './Tabla';
-import DateRange from './DateRange';
+import withAuthorization from './withAuthorization';
 import firebase from '@firebase/app';
 require('firebase/database')
 
@@ -85,23 +85,27 @@ class Historicos extends React.Component {
           }
           console.log(datos)
         return (
-            <div >
-                <div className="wrap-input100 validate-input m-t-85 m-b-35">
+            <div>
+              <div className="p-l-10 p-t-10 p-b-10 p-r-250">
+              <div className="p-r-250">
+              <div className="p-r-200">
                 <input className="input100" type="text" placeholder="Ingrese fecha de Inicio '2019/5/9 19:11'" ref="name" />
                 <br />
                 <input className="input100" type="text" placeholder="Ingrese fecha de Fin arriba en vez de ' van comillas " ref="name" />
                 <br />
                 <button className="login100-form-btn" onClick={this.componentDidMount}>Buscar</button>
                 </div>
-                <div className="container-login100">
+                </div>
+                </div>            
+                <div className="p-l-10 p-t-10 p-b-10 p-r-10">
                  <CustomizedTable datos={datos} />
                 </div>
-                <div className="container-login100">
-                 <DateRange/>
-                </div>            
-            </div>
+                </div>
+                 
         );
     }
 }
 
-export default Historicos;
+const authCondition = (authUser) => !!authUser;
+
+export default withAuthorization(authCondition)(Historicos);

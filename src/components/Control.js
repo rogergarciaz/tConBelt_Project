@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import StepSlider from './Slider';
 import Piston from './Piston';
 import Retro from './Retro';
+import withAuthorization from './withAuthorization';
 
 class ControlPage extends Component {
 
@@ -26,5 +27,6 @@ class ControlPage extends Component {
      );
   }
 }
+const authCondition = (authUser) => !!authUser;
 
-export default ControlPage;
+export default withAuthorization(authCondition)(ControlPage);
