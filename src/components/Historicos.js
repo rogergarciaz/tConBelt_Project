@@ -1,8 +1,11 @@
 import React from 'react';
 import CustomizedTable from './Tabla';
+import Calendar from './Calendar';
 import withAuthorization from './withAuthorization';
 import firebase from '@firebase/app';
 require('firebase/database')
+
+var data = {};
 
 class Historicos extends React.Component {
     constructor(props) {
@@ -27,9 +30,6 @@ class Historicos extends React.Component {
         const that = this
         //firebase.database().ref('data').limitToLast(100);
         firebase.database().ref('data').orderByChild('date').startAt("2019/5/10 16:59").endAt("2019/5/10 17:0").on("value",async function(snapshot){
-        //firebase.database().ref("data").orderByChild("date").equalTo("2019/5/10 16:59").on("value", function(snapshot) { 
-        //console.log(snapshot.val());
-        //});
             let c1 = []
             let c2 = []
             let c3 = []
@@ -69,6 +69,18 @@ class Historicos extends React.Component {
             await that.setState({sensor:sensor})
         })   
     }
+
+    applyCallback(rangeDate) {
+        data = {};
+        var uno =  rangeDate.start.subtract(5, "hours");
+        var dos =  rangeDate.end.subtract(5, "hours");
+        data = {
+            start: uno.toISOString(),
+            end: dos.toISOString()
+        }
+        uno =  rangeDate.start.add(5, "hours");
+        dos =  rangeDate.end.add(5, "hours");
+    }
     render() {
         let datos = {
             date:this.state.date, 
@@ -89,14 +101,11 @@ class Historicos extends React.Component {
               <div className="p-l-10 p-t-10 p-b-10 p-r-250">
               <div className="p-r-250">
               <div className="p-r-200">
-                <input className="input100" type="text" placeholder="Ingrese fecha de Inicio '2019/5/9 19:11'" ref="name" />
-                <br />
-                <input className="input100" type="text" placeholder="Ingrese fecha de Fin arriba en vez de ' van comillas " ref="name" />
-                <br />
-                <button className="login100-form-btn" onClick={this.componentDidMount}>Buscar</button>
+              <Calendar onSelectDate={this.applyCallback}/> 
+                <button className="login100-form-btn m-t-10" onClick={this.componentDidMount}>Buscar</button>
                 </div>
                 </div>
-                </div>            
+                </div>           
                 <div className="p-l-10 p-t-10 p-b-10 p-r-10">
                  <CustomizedTable datos={datos} />
                 </div>
