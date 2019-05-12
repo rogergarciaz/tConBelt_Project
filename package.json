@@ -13,6 +13,7 @@
     "jquery": "^1.9.1",
     "moment": "^2.24.0",
     "react": "^16.8.6",
+    "react-activity": "^1.2.2",
     "react-advanced-datetimerange-picker": "^0.1.12",
     "react-bootstrap": "^1.0.0-beta.8",
     "react-chartjs-2": "^2.7.6",

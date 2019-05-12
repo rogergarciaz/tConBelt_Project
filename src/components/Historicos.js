@@ -2,11 +2,14 @@ import React from 'react';
 import CustomizedTable from './Tabla';
 import Calendar from './Calendar';
 import Graph from './Graph';
+import Preloader from './Preloader';
 import withAuthorization from './withAuthorization';
 import firebase from '@firebase/app';
 require('firebase/database')
 
 var data = {};
+var show = 0;
+var show2 = 0;
 
 class Historicos extends React.Component {
     constructor(props) {
@@ -24,11 +27,32 @@ class Historicos extends React.Component {
             pb : [],
             pc : [],
             verTabla : false,
-            //datosListos : true,
+            loading : false,
         }
     }
+    
+    componentWillUnmount = ()=>{
+        show=0;
+        show2=0;
+        this.setState({c1:[]})
+        this.setState({c2:[]})
+        this.setState({c3:[]})
+        this.setState({vab:[]})
+        this.setState({vbc:[]})
+        this.setState({vca:[]})
+        this.setState({date:[]})
+        this.setState({pa:[]})
+        this.setState({pb:[]})
+        this.setState({pc:[]})
+        this.setState({sensor:[]})
+        this.setState({verTabla:false})
+        this.setState({loading:false})
+    }
+    
 
     applyCallback = (rangeDate) =>{
+        show2=0;
+        this.setState({loading:true})
         const that = this
         data = {};
         var uno =  rangeDate.start.subtract(5, "hours");
@@ -48,45 +72,65 @@ class Historicos extends React.Component {
         var final3 = final2.replace("-","/");
         var final = (final3[0]+final3[1]+final3[2]+final3[3]+final3[4]+final3[5]+final3[6]+final3[7]+final3[8]+final3[9]+final3[10]+final3[11]+final3[12]+final3[13]+final3[14]+final3[15]);
         firebase.database().ref("data").orderByChild("date").startAt(inicio).endAt(final).on("value",async function(snapshot){
-            let c1 = []
-            let c2 = []
-            let c3 = []
-            let vab = []
-            let vbc = []
-            let vca = []
-            let date = []
-            let pa = []
-            let pb = []
-            let pc = []
-            let sensor = []
-            let data = await snapshot.val()
-            data = await Object.values(data)
-            data.forEach(element => {
-                c1.push(element.C1)
-                c2.push(element.C2)
-                c3.push(element.C3)
-                vab.push(element.VAB)
-                vbc.push(element.VBC)
-                vca.push(element.VCA)
-                date.push(element.date)
-                pa.push(element.PA)
-                pb.push(element.PB)
-                pc.push(element.PC)
-                sensor.push(element.Sensor)
-            });
-            await that.setState({c1:c1})
-            await that.setState({c2:c2})
-            await that.setState({c3:c3})
-            await that.setState({vab:vab})
-            await that.setState({vbc:vbc})
-            await that.setState({vca:vca})
-            await that.setState({date:date})
-            await that.setState({pa:pa})
-            await that.setState({pb:pb})
-            await that.setState({pc:pc})
-            await that.setState({sensor:sensor})
-        })
-                 
+            if (snapshot.val() === null){
+                show2=1;
+                show=0;
+                that.setState({loading:false})
+            }else{
+                let c1 = []
+                let c2 = []
+                let c3 = []
+                let vab = []
+                let vbc = []
+                let vca = []
+                let date = []
+                let pa = []
+                let pb = []
+                let pc = []
+                let sensor = []
+                let data = await snapshot.val()
+                data = await Object.values(data)
+                data.forEach(element => {
+                    c1.push(element.C1)
+                    c2.push(element.C2)
+                    c3.push(element.C3)
+                    vab.push(element.VAB)
+                    vbc.push(element.VBC)
+                    vca.push(element.VCA)
+                    date.push(element.date)
+                    pa.push(element.PA)
+                    pb.push(element.PB)
+                    pc.push(element.PC)
+                    sensor.push(element.Sensor)
+                });
+                await that.setState({c1:c1})
+                await that.setState({c2:c2})
+                await that.setState({c3:c3})
+                await that.setState({vab:vab})
+                await that.setState({vbc:vbc})
+                await that.setState({vca:vca})
+                await that.setState({date:date})
+                await that.setState({pa:pa})
+                await that.setState({pb:pb})
+                await that.setState({pc:pc})
+                await that.setState({sensor:sensor})
+                show2=0;
+                show=1;
+                c1 = [];
+                c2 = [];
+                c3 = [];
+                vab = [];
+                vbc = [];
+                vca = [];
+                date = [];
+                pa = [];
+                pb = [];
+                pc = [];
+                sensor = [];
+                that.setState({loading:false})
+                }
+            }
+        );
     }
     render() {
         let datos={
@@ -101,15 +145,12 @@ class Historicos extends React.Component {
             pb:this.state.pb,
             pc:this.state.pc,
             sensor:this.state.sensor
-         }
-         
+         }         
         return (
             <div>
               <div className="p-l-10 p-t-10 p-b-10 p-r-250">
               <div className="p-r-250">
               <div className="p-r-200">
-              {//this.state.c1.length!== 0?this.setState({datosListos:false}):this.setState({datosListos:true})
-              }
               <Calendar onSelectDate={this.applyCallback}/> 
                 </div>
                 </div>
@@ -123,9 +164,9 @@ class Historicos extends React.Component {
                 </div> 
                 </div>       
                 <div className="p-l-10 p-t-10 p-b-10 p-r-10">
-                {//this.state.datosListos?!this.state.verTabla?<CustomizedTable datos={datos}/>:<Graph datos={datos}/>:''
-                }
-                {!this.state.verTabla?<CustomizedTable datos={datos}/>:<Graph datos={datos}/>}
+                {this.state.loading?<Preloader/>:''}
+                {show===1?!this.state.verTabla? <CustomizedTable datos={datos}/>:<Graph datos={datos}/>:''}
+                {show2===1?<h2>No se encontraron datos</h2>:''}
                 </div>
                 </div>     
         );
