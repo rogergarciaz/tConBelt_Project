@@ -23,15 +23,11 @@ class Historicos extends React.Component {
             pb : [],
             pc : [],
             verTabla : false,
-            datosListos : false,
+            datosListos : true,
         }
     }
-    
-    //componentDidMount = () =>{        
-    //    const that = this  
-    //}
 
-    applyCallback(rangeDate) {
+    applyCallback = (rangeDate) =>{
         const that = this
         data = {};
         var uno =  rangeDate.start.subtract(5, "hours");
@@ -42,10 +38,15 @@ class Historicos extends React.Component {
         }
         uno =  rangeDate.start.add(5, "hours");
         dos =  rangeDate.end.add(5, "hours");
-        var inicio = data.start.toString();
-        var final = data.end.toString();
-        //firebase.database().ref('data').limitToLast(100);
-        firebase.database().ref('data').orderByChild('date').startAt(inicio).endAt(final).on("value",async function(snapshot){
+        var inicio1 = data.start.toString().replace("-","/");
+        var inicio2 = inicio1.replace("T"," ");
+        var inicio3 = inicio2.replace("-","/");
+        var inicio = (inicio3[0]+inicio3[1]+inicio3[2]+inicio3[3]+inicio3[4]+inicio3[5]+inicio3[6]+inicio3[7]+inicio3[8]+inicio3[9]+inicio3[10]+inicio3[11]+inicio3[12]+inicio3[13]+inicio3[14]+inicio3[15]);
+        var final1 = data.end.toString().replace("-","/");
+        var final2 = final1.replace("T"," ");
+        var final3 = final2.replace("-","/");
+        var final = (final3[0]+final3[1]+final3[2]+final3[3]+final3[4]+final3[5]+final3[6]+final3[7]+final3[8]+final3[9]+final3[10]+final3[11]+final3[12]+final3[13]+final3[14]+final3[15]);
+        firebase.database().ref("data").orderByChild("date").startAt(inicio).endAt(final).on("value",async function(snapshot){
             let c1 = []
             let c2 = []
             let c3 = []
@@ -84,7 +85,7 @@ class Historicos extends React.Component {
             await that.setState({pc:pc})
             await that.setState({sensor:sensor})
         })
-        that.state.c1.length===0?that.setState({datosListos:false}):that.setState({datosListos:true})         
+                 
     }
     render() {
         let datos={
@@ -100,6 +101,8 @@ class Historicos extends React.Component {
             pc:this.state.pc,
             sensor:this.state.sensor
          }
+         //var cantidad = this.state.c1.length;
+         //cantidad != 0?this.setState({datosListos:false}):this.setState({datosListos:true})
         return (
             <div>
               <div className="p-l-10 p-t-10 p-b-10 p-r-250">
@@ -110,10 +113,10 @@ class Historicos extends React.Component {
                 </div>
                 <div className="m-l-250 p-l-250">
                 <div className="m-l-250 ">
-                {this.state.datosListos?<button className="btn btn-success" onClick={async()=>{
+                <button className="btn btn-success" onClick={async()=>{
                     await this.setState({verTabla:!this.state.verTabla})}} >
                 {this.state.verTabla?'Mostrar Tabla':'Mostrar Graficas'}
-                </button>:''}
+                </button>
                 </div>
                 </div> 
                 </div>       

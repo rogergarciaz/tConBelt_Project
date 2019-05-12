@@ -96,7 +96,7 @@ class Retro extends React.Component {
               await that.setState({pb:pb})
               await that.setState({pc:pc})
               await that.setState({sensor:sensor})
-            })   
+            });
   }
   render() {
     let datos = {

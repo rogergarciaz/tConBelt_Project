@@ -43,7 +43,7 @@ const rows=[]
 function CustomizedTable(props) {
   const { classes } = props;
   id=0;
-  for (var i = 0; i < 10; i++) {
+  for (var i = 0; i < props.datos.date.length; i++) {
     rows[i]= (createData(
       props.datos.date[i],
       props.datos.c1[i],
