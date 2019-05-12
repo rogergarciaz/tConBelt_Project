@@ -7,6 +7,7 @@
     "@material-ui/lab": "^3.0.0-alpha.30",
     "bootstrap": "^4.3.1",
     "chart.js": "^2.3.0",
+    "chartjs": "^0.3.24",
     "firebase": "^5.0.4",
     "graceful-fs": "^4.1.15",
     "jquery": "^1.9.1",

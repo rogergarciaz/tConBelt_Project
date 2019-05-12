@@ -1,6 +1,7 @@
 import React from 'react';
 import CustomizedTable from './Tabla';
 import Calendar from './Calendar';
+import Graph from './Graph';
 import withAuthorization from './withAuthorization';
 import firebase from '@firebase/app';
 require('firebase/database')
@@ -23,7 +24,7 @@ class Historicos extends React.Component {
             pb : [],
             pc : [],
             verTabla : false,
-            datosListos : true,
+            //datosListos : true,
         }
     }
 
@@ -101,13 +102,14 @@ class Historicos extends React.Component {
             pc:this.state.pc,
             sensor:this.state.sensor
          }
-         //var cantidad = this.state.c1.length;
-         //cantidad != 0?this.setState({datosListos:false}):this.setState({datosListos:true})
+         
         return (
             <div>
               <div className="p-l-10 p-t-10 p-b-10 p-r-250">
               <div className="p-r-250">
               <div className="p-r-200">
+              {//this.state.c1.length!== 0?this.setState({datosListos:false}):this.setState({datosListos:true})
+              }
               <Calendar onSelectDate={this.applyCallback}/> 
                 </div>
                 </div>
@@ -121,7 +123,9 @@ class Historicos extends React.Component {
                 </div> 
                 </div>       
                 <div className="p-l-10 p-t-10 p-b-10 p-r-10">
-                {this.state.datosListos?!this.state.verTabla?<CustomizedTable datos={datos}/>:'Graficas':''}
+                {//this.state.datosListos?!this.state.verTabla?<CustomizedTable datos={datos}/>:<Graph datos={datos}/>:''
+                }
+                {!this.state.verTabla?<CustomizedTable datos={datos}/>:<Graph datos={datos}/>}
                 </div>
                 </div>     
         );
