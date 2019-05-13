@@ -17,7 +17,7 @@ class Piston extends React.Component {
             that.setState({PISTON :snapshot.val()})
         });
         
-        }
+    }
 
     componentWillUnmount (){
         firebase.database().ref('/').update({

@@ -5,33 +5,23 @@ class Graph extends Component {
   constructor(props){
     super(props);
     this.state={
-    c1 : props.datos.c1,
-    c2 : props.datos.c2,
-    c3 : props.datos.c3,
-    vab : props.datos.vab,
-    vbc : props.datos.vbc,
-    vca : props.datos.vca,
-    date : props.datos.date,
-    sensor:props.datos.sensor,
-    pa:props.datos.pa,
-    pb:props.datos.pb,
-    pc:props.datos.pc
+
     }
   }
 
   render() {
-    const Labels = this.state.date
-    const c1 = this.state.c1
-    const c2 = this.state.c2
-    const c3 = this.state.c3
-    const vab = this.state.vab
-    const vbc = this.state.vbc
-    const vca = this.state.vca
-    const pa = this.state.pa
-    const pb = this.state.pb
-    const pc = this.state.pc
-    const sensor = this.state.sensor
-    const chartData = {
+    var Labels = this.props.datos.date
+    var c1 = this.props.datos.c1
+    var c2 = this.props.datos.c2
+    var c3 = this.props.datos.c3
+    var vab = this.props.datos.vab
+    var vbc = this.props.datos.vbc
+    var vca = this.props.datos.vca
+    var pa = this.props.datos.pa
+    var pb = this.props.datos.pb
+    var pc = this.props.datos.pc
+    var sensor = this.props.datos.sensor
+    var chartData = {
       labels:Labels,
       datasets: [
         {
@@ -97,7 +87,7 @@ class Graph extends Component {
           },
       ]
     }
-    const chartData1 = {
+    var chartData1 = {
         labels:Labels,
         datasets: [
           {
@@ -164,7 +154,7 @@ class Graph extends Component {
         ]
       }
 
-      const chartData2 = {
+      var chartData2 = {
         labels:Labels,
         datasets: [
           {
@@ -230,7 +220,7 @@ class Graph extends Component {
             },
         ]
       }
-      const chartData3 = {
+      var chartData3 = {
         labels:Labels,
         datasets: [
           {
