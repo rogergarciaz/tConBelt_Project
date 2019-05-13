@@ -247,8 +247,8 @@ class Graph extends Component {
         ]
     }
     return (
-      <div className="chart p-t-10 p-r-5 p-l-5 p-b-10">
-      <Line
+      <div className="limiter">
+      <Line 
         data={chartData}
         options={{
           title: {

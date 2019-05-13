@@ -12,7 +12,7 @@ const pStyle = {
 class LandingPage extends React.Component {
     render(){
         return (
-          <div>
+          <div className="limiter">
             <br />
             <span className="login100-form-title b-70p-">
                tConBelt  

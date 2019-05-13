@@ -10,10 +10,12 @@ import Historicos from './Historicos';
 import LandingPage from './Landing';
 import * as routes from '../constants/routes';
 import withAuthentication from './withAuthentication';
+import "bootstrap/dist/css/bootstrap.min.css"
+import "./App.css";
 
 const App = () =>
-  <Router>
-    <div>
+  <Router >
+    <div >
       <Navigation />
 
       <Route exact path={routes.LANDING} component={LandingPage} />

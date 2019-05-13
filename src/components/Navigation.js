@@ -1,8 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import SignOutButton from './SignOut';
 import * as routes from '../constants/routes';
 import AuthUserContext from './AuthUserContext';
+import {Nav, Navbar} from "react-bootstrap";
 
 const pStyle = {
   width:'70px',
@@ -17,29 +17,36 @@ const Navigation = () =>
     }
   </AuthUserContext.Consumer>
 
-const divStyle = {
-  display:'inline',
-  margin: '40px', 
-};
 
 const NavigationAuth = () =>
   
-  <ul>
-    
-    <li style={divStyle}><Link to={routes.LANDING}>
-    <img src="images/logo.jpg" alt="tConBelt" style={pStyle}/>
-    </Link></li>
-    <li style={divStyle}><Link to={routes.CONTROL}>Control</Link></li>
-    <li style={divStyle}><Link to={routes.HISTORICOS}>Historicos</Link></li>
-    <li style={divStyle}><Link to={routes.LANDING}><SignOutButton /></Link></li>
-  </ul>
+<Navbar bg="gray" expand="lg">
+  <Navbar.Brand href={routes.LANDING}>
+  <img src="images/logo.jpg" alt="tConBelt" style={pStyle}/>
+  </Navbar.Brand>
+  <Navbar.Toggle aria-controls="basic-navbar-nav" />
+  <Navbar.Collapse id="basic-navbar-nav">
+    <Nav className="mr-auto">
+      <Nav.Link href={routes.CONTROL}>Control</Nav.Link>
+      <Nav.Link href={routes.HISTORICOS}>Historicos</Nav.Link>
+    </Nav>
+    <Nav>
+      <Nav.Link href={routes.LANDING}><SignOutButton /></Nav.Link>
+    </Nav>
+  </Navbar.Collapse>
+</Navbar>
 
 const NavigationNonAuth = () =>
-<ul>
-<li style={divStyle}><Link to={routes.LANDING}>
-    <img src="images/logo.jpg" alt="tConBelt" style={pStyle}/>
-    </Link></li>
- <li style={divStyle}><Link to={routes.SIGN_IN}>Ingresar</Link></li>
-</ul>
+<Navbar bg="gray" expand="lg">
+  <Navbar.Brand href={routes.LANDING}>
+  <img src="images/logo.jpg" alt="tConBelt" style={pStyle}/>
+  </Navbar.Brand>
+  <Navbar.Toggle aria-controls="basic-navbar-nav" />
+  <Navbar.Collapse id="basic-navbar-nav">
+    <Nav className="mr-auto">
+      <Nav.Link href={routes.SIGN_IN}>Ingresar</Nav.Link>
+    </Nav>
+  </Navbar.Collapse>
+</Navbar>
 
 export default Navigation;
