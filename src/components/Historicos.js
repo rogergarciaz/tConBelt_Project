@@ -202,7 +202,7 @@ class Historicos extends React.Component {
             </Col>
           </Row>
         </div>
-        <div className="p-2">
+        <div className="p-1">
           {this.state.loading ? (
             <Preloader className="p-1" />
           ) : (
@@ -211,7 +211,7 @@ class Historicos extends React.Component {
           {show === 1 ? (
             !this.state.verTabla ? (
               <CustomizedTable
-                className="p-2"
+                className="p-1"
                 datos={datos}
               />
             ) : (

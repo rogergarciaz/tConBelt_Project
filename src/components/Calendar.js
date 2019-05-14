@@ -37,12 +37,12 @@ class Calendar extends React.Component {
       .add(1, "days")
       .subtract(1, "seconds");
     let ranges = {
-      "Today Only": [moment(start), moment(end)],
-      "Yesterday Only": [
+      "Solo Hoy": [moment(start), moment(end)],
+      "Solo Ayer": [
         moment(start).subtract(1, "days"),
         moment(end).subtract(1, "days")
       ],
-      "3 Days": [moment(start).subtract(3, "days"), moment(end)]
+      "3 Días": [moment(start).subtract(3, "days"), moment(end)]
     };
     let local = {
       format: "YYYY/MM/DD HH:mm",
@@ -63,7 +63,7 @@ class Calendar extends React.Component {
             id="formControlsTextB"
             type="text"
             label="Text"
-            placeholder="Seleccione el Rango de Busqueda"
+            placeholder="Toque para buscar"
           />
         </DateTimeRangeContainer>
       </div>
