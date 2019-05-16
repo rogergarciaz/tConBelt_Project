@@ -16,12 +16,14 @@
     "react-activity": "^1.2.2",
     "react-advanced-datetimerange-picker": "^0.1.12",
     "react-bootstrap": "^1.0.0-beta.8",
+    "react-bootstrap-sweetalert": "^4.4.1",
     "react-chartjs-2": "^2.7.6",
     "react-dom": "^16.8.4",
     "react-input-slider": "^5.0.9",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.1",
     "styled-components": "^4.2.0",
+    "sweetalert": "^2.1.2",
     "uuid": "^3.3.2"
   },
   "scripts": {

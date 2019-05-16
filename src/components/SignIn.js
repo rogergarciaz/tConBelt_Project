@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { auth } from '../firebase';
 import * as routes from '../constants/routes';
+import swal from 'sweetalert'
 
 const SignInPage = ({ history }) =>
   <div>
     <SignInForm history={history} />
+    
   </div>
 
 const byPropKey = (propertyName, value) => () => ({
@@ -16,13 +18,29 @@ const INITIAL_STATE = {
   email: '',
   password: '',
   error: null,
+  hideAlert:true,
+  rememberMe:false
 };
 
 class SignInForm extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { ...INITIAL_STATE };
+    this.state = { ...INITIAL_STATE};
+  }
+
+  handleChange = (event) => {
+    const input = event.target;
+    const value = input.type === 'checkbox' ? input.checked : input.value;
+    this.setState({ [input.name]: value });
+  };
+
+  componentDidMount=()=> {
+    const rememberMe = localStorage.getItem('rememberMe') === 'true';
+    const email = rememberMe ? localStorage.getItem('email') : '';
+    const password = rememberMe ? localStorage.getItem('password') : '';
+    this.setState({ password, rememberMe });
+    this.setState({ email, rememberMe });
   }
 
   onSubmit = (event) => {
@@ -35,13 +53,38 @@ class SignInForm extends Component {
       history,
     } = this.props;
 
+    const email1 = this.state.email
+    const password1 = this.state.password
+    const rememberMe  = this.state.rememberMe
+    localStorage.setItem('rememberMe', rememberMe);
+    localStorage.setItem('email', rememberMe ? email1 : '');
+    localStorage.setItem('password', rememberMe ? password1 : '');
+
     auth.doSignInWithEmailAndPassword(email, password)
       .then(() => {
         this.setState({ ...INITIAL_STATE });
         history.push(routes.LANDING);
       })
       .catch(error => {
-        this.setState(byPropKey('error', error));
+        console.log(error)
+        if (this.state.email ==="" && this.state.password===""){
+          swal({
+            title: "Error",
+            text: "Los campos están vacíos",
+            icon: "warning",
+            dangerMode: true,
+          })
+        }else{
+          error= error.code === "auth/wrong-password" ? "La contraseña es incorrecta":"El email es incorrecto"
+          swal({
+            title: "Error",
+            text: error,
+            icon: "warning",
+            dangerMode: true,
+          })
+        }
+        
+        this.setState({error:error});
       });
 
     event.preventDefault();
@@ -51,12 +94,9 @@ class SignInForm extends Component {
     const {
       email,
       password,
-      error,
+      error
     } = this.state;
 
-    const isInvalid =
-      password === '' ||
-      email === '';
 
     return (
           <div className="limiter">
@@ -70,22 +110,23 @@ class SignInForm extends Component {
                   </div>
                        
                   <div className="wrap-input100 validate-input m-t-85 m-b-35" data-validate = "Ingrese usuario">
-                    <input className="input100" value={email} onChange={event => this.setState(byPropKey('email', event.target.value))} type="text"/>
-                    <span className="focus-input100" data-placeholder="Correo"></span>
+                    <input className="input100" value={email} placeholder="Email" onChange={event => this.setState(byPropKey('email', event.target.value))} type="text"/>
                   </div>
 
                   <div className="wrap-input100 validate-input m-b-50" data-validate="Enter password">
-                    <input className="input100" value={password} onChange={event => this.setState(byPropKey('password', event.target.value))} type="password"/>
-                    <span className="focus-input100" data-placeholder="Contraseña"></span>
+                    <input className="input100" placeholder="Contraseña" value={password} onChange={event => this.setState(byPropKey('password', event.target.value))} type="password"/>
                   </div>
-
+                  <label>
+                    <input name="rememberMe" checked={this.state.rememberMe} onChange={this.handleChange} type="checkbox"/> Recuerda me
+                  </label>
                   <div className="container-login100-form-btn">
-                    <button className="login100-form-btn" disabled={isInvalid} type="submit">
+                    <button className="login100-form-btn" type="submit">
                       Iniciar Sesión
                     </button>
                   </div>
                   { error && <p>{error.message}</p> }
                 </form>
+                
               </div>
             </div>
           </div>

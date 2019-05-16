@@ -31,7 +31,7 @@ const NavigationAuth = () =>
       <Nav.Link href={routes.HISTORICOS}>Históricos</Nav.Link>
     </Nav>
     <Nav>
-      <Nav.Link href={routes.LANDING}><SignOutButton /></Nav.Link>
+      <Nav.Link href={routes.SIGN_IN}><SignOutButton /></Nav.Link>
     </Nav>
   </Navbar.Collapse>
 </Navbar>

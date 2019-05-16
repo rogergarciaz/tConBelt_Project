@@ -25,7 +25,7 @@ class LandingPage extends React.Component {
              <br />
              <h4 className="text-center">
               Somos el sistema de gestión y telegestión de la banda transportadora del Laboratorio de Automatización Industrial de la Universidad del Norte.
-              Este proyecto inicio en el año 2019 y fue elaborado por estudiantes de Ingenieria Electrónica para el uso de todo el departamento de Ingenieria Eléctrica y Electrónica.
+              Este proyecto inició en el año 2019 y fue elaborado por estudiantes de Ingenieria Electrónica para el uso de todo el departamento de Ingenieria Eléctrica y Electrónica.
               </h4>  
               <br />
               <br /> 
@@ -35,7 +35,7 @@ class LandingPage extends React.Component {
               </div>     
               <br />   
             <h4 className="text-center">
-              Descarga la APK para el sistema operatvio Android, y controla la banda transportadora desde tu celular. 
+              Descarga la APK para el sistema operativo Android, y controla la banda transportadora desde tu celular. 
               Revisa los datos actuales de la banda transportadora como lo son el consumo energético y la velocidad. 
               </h4> 
             <div className="login100-form-title p-b-70">

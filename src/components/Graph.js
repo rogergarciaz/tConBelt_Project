@@ -267,7 +267,7 @@ class Graph extends Component {
         options={{
           title: {
             display: true,
-            text: "Voltajes linea linea [V]",
+            text: "Voltajes línea línea [V]",
             fontSize: 20
           },
           legend:{
