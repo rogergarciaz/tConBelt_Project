@@ -30,8 +30,8 @@ class LandingPage extends React.Component {
               <br />
               <br /> 
               <div className="text-center">
-              <img  src="images/login.png" alt="logg" style={pStyle}/> 
-              <img  src="images/control.png" alt="con" style={pStyle}/> 
+              <img  src="images/login.jpg" alt="logg" style={pStyle}/> 
+              <img  src="images/control.jpg" alt="con" style={pStyle}/> 
               </div>     
               <br />   
             <h4 className="text-center">
