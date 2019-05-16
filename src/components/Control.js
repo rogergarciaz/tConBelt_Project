@@ -39,11 +39,7 @@ class ControlPage extends Component {
     let pb = [];
     let pc = [];
     let sensor = [];
-    firebase
-      .database()
-      .ref("data")
-      .limitToLast(1)
-      .on("value", async function(snapshot) {
+    firebase.database().ref("data").limitToLast(1).on("value", async function(snapshot) {
         if (snapshot.val() === null) {
           return <div>No hay datos</div>;
         } else {

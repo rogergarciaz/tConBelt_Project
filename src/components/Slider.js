@@ -75,10 +75,7 @@ class StepSlider extends React.Component {
   };
 
   componentWillUnmount() {
-    firebase
-      .database()
-      .ref("commands")
-      .update({
+    firebase.database().ref("commands").update({
         DIN1: 0,
         DIN2: 0,
         DIN3: 0

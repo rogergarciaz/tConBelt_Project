@@ -28,7 +28,7 @@ const NavigationAuth = () =>
   <Navbar.Collapse id="basic-navbar-nav">
     <Nav className="mr-auto">
       <Nav.Link href={routes.CONTROL}>Control</Nav.Link>
-      <Nav.Link href={routes.HISTORICOS}>Historicos</Nav.Link>
+      <Nav.Link href={routes.HISTORICOS}>Históricos</Nav.Link>
     </Nav>
     <Nav>
       <Nav.Link href={routes.LANDING}><SignOutButton /></Nav.Link>

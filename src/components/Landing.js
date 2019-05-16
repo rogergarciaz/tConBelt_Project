@@ -1,10 +1,19 @@
 import React from 'react';
-
+import firebase from "@firebase/app";
+require("firebase/database");
 const pStyle = {
   width:'15 rem',
   height:'15 rem'
 };
 class LandingPage extends React.Component {
+  
+  componentDidMount=()=>{
+    firebase.database().ref("commands").update({
+      DIN1: 0,
+      DIN2: 0,
+      DIN3: 0
+    });
+  }
     render(){
         return (
           <div className="limiter">
@@ -21,8 +30,9 @@ class LandingPage extends React.Component {
               <br />
               <br /> 
               <div className="text-center">
-              <img  src="images/aplic.jpg" alt="app" style={pStyle}/> 
-              </div>    
+              <img  src="images/login.png" alt="logg" style={pStyle}/> 
+              <img  src="images/control.png" alt="con" style={pStyle}/> 
+              </div>     
               <br />   
             <h4 className="text-center">
               Descarga la APK para el sistema operatvio Android, y controla la banda transportadora desde tu celular. 

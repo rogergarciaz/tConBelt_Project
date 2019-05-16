@@ -31,7 +31,13 @@ class Historicos extends React.Component {
       loading: false
     };
   }
-
+  componentDidMount=()=>{
+    firebase.database().ref("commands").update({
+      DIN1: 0,
+      DIN2: 0,
+      DIN3: 0
+    });
+  }
   componentWillUnmount = () => {
     show = 0;
     show2 = 0;
@@ -103,13 +109,7 @@ class Historicos extends React.Component {
       final3[13] +
       final3[14] +
       final3[15];
-    firebase
-      .database()
-      .ref("data")
-      .orderByChild("date")
-      .startAt(inicio)
-      .endAt(final)
-      .on("value", async function(snapshot) {
+    firebase.database().ref("data").orderByChild("date").startAt(inicio).endAt(final).on("value", async function(snapshot) {
         if (snapshot.val() === null) {
           show2 = 1;
           show = 0;
