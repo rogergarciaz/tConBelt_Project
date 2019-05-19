@@ -205,7 +205,7 @@ class ControlPage extends Component {
             <Piston />
           </div>
         </div>
-        <div className="p-5">
+        <div className="p-1">
           <Graph datos={datos} />
         </div>
         <div>
