@@ -7,7 +7,7 @@ require("firebase/database");
 
 const styles = {
   root: {
-    width: 300
+    width: 300,
   },
   slider: {
     padding: "22px 0px"

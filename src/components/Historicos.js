@@ -6,6 +6,7 @@ import Preloader from "./Preloader";
 import withAuthorization from "./withAuthorization";
 import firebase from "@firebase/app";
 import { Container, Row, Col } from "react-bootstrap";
+import swal from 'sweetalert'
 require("firebase/database");
 
 var data = {};
@@ -25,13 +26,18 @@ class Historicos extends React.Component {
       date: [],
       sensor: [],
       pa: [],
-      pb: [],
-      pc: [],
       verTabla: true,
-      loading: false
+      loading: false,
+      start:'',
+      end:''
     };
   }
   componentDidMount=()=>{
+    swal({
+      text: "-Selecciona un rango de fechas de interés para la visualización de datos históricos."+
+       "\n-Puedes elegir cómo ver tus datos: En gráficos o tabla",
+      icon: "info",
+    })
     firebase.database().ref("commands").update({
       DIN1: 0,
       DIN2: 0,
@@ -49,8 +55,6 @@ class Historicos extends React.Component {
     this.setState({ vca: [] });
     this.setState({ date: [] });
     this.setState({ pa: [] });
-    this.setState({ pb: [] });
-    this.setState({ pc: [] });
     this.setState({ sensor: [] });
     this.setState({ verTabla: true });
     this.setState({ loading: false });
@@ -109,6 +113,7 @@ class Historicos extends React.Component {
       final3[13] +
       final3[14] +
       final3[15];
+      this.setState({start: inicio, end: final})
     firebase.database().ref("data").orderByChild("date").startAt(inicio).endAt(final).on("value", async function(snapshot) {
         if (snapshot.val() === null) {
           show2 = 1;
@@ -123,8 +128,6 @@ class Historicos extends React.Component {
           let vca = [];
           let date = [];
           let pa = [];
-          let pb = [];
-          let pc = [];
           let sensor = [];
           let data = await snapshot.val();
           data = await Object.values(data);
@@ -137,8 +140,6 @@ class Historicos extends React.Component {
             vca.push(element.VCA);
             date.push(element.date);
             pa.push(element.PA);
-            pb.push(element.PB);
-            pc.push(element.PC);
             sensor.push(element.Sensor);
           });
           await that.setState({ c1: c1 });
@@ -149,8 +150,6 @@ class Historicos extends React.Component {
           await that.setState({ vca: vca });
           await that.setState({ date: date });
           await that.setState({ pa: pa });
-          await that.setState({ pb: pb });
-          await that.setState({ pc: pc });
           await that.setState({ sensor: sensor });
           show2 = 0;
           show = 1;
@@ -162,14 +161,13 @@ class Historicos extends React.Component {
           vca = [];
           date = [];
           pa = [];
-          pb = [];
-          pc = [];
           sensor = [];
           that.setState({ loading: false });
         }
       });
   };
   render() {
+    const {start,end} = this.state
     let datos = {
       date: this.state.date,
       c1: this.state.c1,
@@ -179,8 +177,6 @@ class Historicos extends React.Component {
       vbc: this.state.vbc,
       vca: this.state.vca,
       pa: this.state.pa,
-      pb: this.state.pb,
-      pc: this.state.pc,
       sensor: this.state.sensor
     };
     return (
@@ -188,7 +184,7 @@ class Historicos extends React.Component {
         <div className="p-4">
           <Row>
             <Col>
-              <Calendar onSelectDate={this.applyCallback} />
+              <Calendar onSelectDate={this.applyCallback} value={start+" - "+end } />
             </Col>
             <Col sm="auto">
               <button

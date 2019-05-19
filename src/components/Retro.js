@@ -17,8 +17,6 @@ class Retro extends React.Component {
         vca : [],
         date : [],
         pa : [],
-        pb : [],
-        pc : [],
         sensor:[]
       } 
     }
@@ -67,8 +65,6 @@ class Retro extends React.Component {
               let vca = []
               let date = []
               let pa = []
-              let pb = []
-              let pc = []
               let sensor = []
               let data = await snapshot.val()
               data = await Object.values(data)
@@ -81,8 +77,6 @@ class Retro extends React.Component {
                   vca.push(element.VCA)
                   date.push(element.date)
                   pa.push(element.PA)
-                  pb.push(element.PB)
-                  pc.push(element.PC)
                   sensor.push(element.Sensor)
               });
               await that.setState({c1 : c1})
@@ -93,8 +87,6 @@ class Retro extends React.Component {
               await that.setState({vca : vca})
               await that.setState({date:date})
               await that.setState({pa:pa})
-              await that.setState({pb:pb})
-              await that.setState({pc:pc})
               await that.setState({sensor:sensor})
             });
   }
@@ -109,8 +101,6 @@ class Retro extends React.Component {
       vca:this.state.vca, 
       sensor:this.state.sensor,
       pa:this.state.pa,
-      pb:this.state.pb,
-      pc:this.state.pc,
       piston:this.state.update.PISTON
     }
     return (

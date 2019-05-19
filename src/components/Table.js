@@ -50,9 +50,7 @@ function CustomizedTable(props) {
     createData('Voltaje A-B', props.datos.vab, '[V]'),
     createData('Voltaje B-C', props.datos.vbc, '[V]'),
     createData('Voltaje C-A', props.datos.vca, '[V]'),
-    createData('Potencia activa línea A', props.datos.pa, '[W]'),
-    createData('Potencia activa línea B', props.datos.pb, '[W]'),
-    createData('Potencia activa línea C', props.datos.pc, '[W]'),
+    createData('Potencia activa total', props.datos.pa, '[W]'),
     createData('Sensor', props.datos.sensor, '[RPM]'),
     createData('Pistón', ((props.datos.piston===1 )? 'Activado' : 'Desactivado')),
   ];

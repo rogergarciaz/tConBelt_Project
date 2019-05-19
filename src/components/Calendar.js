@@ -64,6 +64,7 @@ class Calendar extends React.Component {
             type="text"
             label="Text"
             placeholder="Toque para buscar"
+            value = {this.props.value === " - " ? "":this.props.value}
           />
         </DateTimeRangeContainer>
       </div>

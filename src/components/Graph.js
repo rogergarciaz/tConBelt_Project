@@ -18,15 +18,13 @@ class Graph extends Component {
     var vbc = this.props.datos.vbc
     var vca = this.props.datos.vca
     var pa = this.props.datos.pa
-    var pb = this.props.datos.pb
-    var pc = this.props.datos.pc
     var sensor = this.props.datos.sensor
     var chartData = {
       labels:Labels,
       datasets: [
         {
           data: c1,
-          label: 'Corriente A',
+          label: 'Línea A',
           fill: false,
           lineTension: 0.1,
           backgroundColor: 'rgba(90,172,172)',
@@ -45,7 +43,7 @@ class Graph extends Component {
           pointRadius: 1,
           pointHitRadius: 10,
         },{
-            label: 'Corriente B',
+            label: 'Línea B',
             fill: false,
             lineTension: 0.1,
             backgroundColor: 'rgba(75,192,134)',
@@ -65,7 +63,7 @@ class Graph extends Component {
             pointHitRadius: 10,
             data: c2 
           },{
-            label: 'Corriente C',
+            label: 'Línea C',
             fill: false,
             lineTension: 0.1,
             backgroundColor: 'rgba(192,75,104)',
@@ -92,7 +90,7 @@ class Graph extends Component {
         datasets: [
           {
             data: vab,
-            label: 'Voltaje A-B',
+            label: 'Línea A-B',
             fill: false,
             lineTension: 0.1,
             backgroundColor: 'rgba(90,172,172)',
@@ -111,7 +109,7 @@ class Graph extends Component {
             pointRadius: 1,
             pointHitRadius: 10,
           },{
-              label: 'Voltaje B-C',
+              label: 'Línea B-C',
               fill: false,
               lineTension: 0.1,
               backgroundColor: 'rgba(75,192,134)',
@@ -131,7 +129,7 @@ class Graph extends Component {
               pointHitRadius: 10,
               data: vbc 
             },{
-              label: 'Voltaje C-A',
+              label: 'Línea C-A',
               fill: false,
               lineTension: 0.1,
               backgroundColor: 'rgba(192,75,104)',
@@ -159,7 +157,7 @@ class Graph extends Component {
         datasets: [
           {
             data: pa,
-            label: 'Potencia Activa A',
+            label: 'Potencia Activa Total',
             fill: false,
             lineTension: 0.1,
             backgroundColor: 'rgba(90,172,172)',
@@ -177,47 +175,7 @@ class Graph extends Component {
             pointHoverBorderWidth: 2,
             pointRadius: 1,
             pointHitRadius: 10,
-          },{
-              label: 'Potencia Activa B',
-              fill: false,
-              lineTension: 0.1,
-              backgroundColor: 'rgba(75,192,134)',
-              borderColor: 'rgba(75,192,134)',
-              borderCapStyle: 'butt',
-              borderDash: [],
-              borderDashOffset: 0.0,
-              borderJoinStyle: 'miter',
-              pointBorderColor: 'rgba(75,192,134)',
-              pointBackgroundColor: '#fff',
-              pointBorderWidth: 1,
-              pointHoverRadius: 5,
-              pointHoverBackgroundColor: 'rgba(75,192,134)',
-              pointHoverBorderColor: 'rgba(75,192,134)',
-              pointHoverBorderWidth: 2,
-              pointRadius: 1,
-              pointHitRadius: 10,
-              data: pb
-            },{
-              label: 'Potencia Activa C',
-              fill: false,
-              lineTension: 0.1,
-              backgroundColor: 'rgba(192,75,104)',
-              borderColor: 'rgba(192,75,104)',
-              borderCapStyle: 'butt',
-              borderDash: [],
-              borderDashOffset: 0.0,
-              borderJoinStyle: 'miter',
-              pointBorderColor: 'rgba(192,75,104)',
-              pointBackgroundColor: '#fff',
-              pointBorderWidth: 1,
-              pointHoverRadius: 5,
-              pointHoverBackgroundColor: 'rgba(192,75,104)',
-              pointHoverBorderColor: 'rgba(192,75,104)',
-              pointHoverBorderWidth: 2,
-              pointRadius: 1,
-              pointHitRadius: 10,
-              data: pc 
-            },
+          }
         ]
       }
       var chartData3 = {
@@ -281,7 +239,7 @@ class Graph extends Component {
         options={{
           title: {
             display: true,
-            text: "Potencia activa en las lineas",
+            text: "Potencia activa Total",
             fontSize: 20
           },
           legend:{

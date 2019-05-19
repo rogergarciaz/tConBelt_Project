@@ -6,6 +6,7 @@ import Graph from "./Graph";
 import withAuthorization from "./withAuthorization";
 import firebase from "@firebase/app";
 import { Container } from "react-bootstrap";
+import swal from 'sweetalert';
 require("firebase/database");
 
 class ControlPage extends Component {
@@ -21,12 +22,16 @@ class ControlPage extends Component {
       date: [],
       sensor: [],
       pa: [],
-      pb: [],
-      pc: []
     };
   }
 
   componentDidMount = () => {
+    swal({
+      title: "¡Hola!",
+      text: "-Desliza el slider para controlar la velocidad de la banda transportadora."+
+       "\n-Oprime el botón para accionar el pistón que controla el flujo de los objetos sobre la banda transportadora.",
+      icon: "info",
+    })
     const that = this;
     let c1 = [];
     let c2 = [];
@@ -36,8 +41,6 @@ class ControlPage extends Component {
     let vca = [];
     let date = [];
     let pa = [];
-    let pb = [];
-    let pc = [];
     let sensor = [];
     firebase.database().ref("data").limitToLast(1).on("value", async function(snapshot) {
         if (snapshot.val() === null) {
@@ -121,28 +124,6 @@ class ControlPage extends Component {
               pa[8],
               pa[9]
             ];
-            pb = [
-              pb[1],
-              pb[2],
-              pb[3],
-              pb[4],
-              pb[5],
-              pb[6],
-              pb[7],
-              pb[8],
-              pb[9]
-            ];
-            pc = [
-              pc[1],
-              pc[2],
-              pc[3],
-              pc[4],
-              pc[5],
-              pc[6],
-              pc[7],
-              pc[8],
-              pc[9]
-            ];
             sensor = [
               sensor[1],
               sensor[2],
@@ -177,8 +158,6 @@ class ControlPage extends Component {
             vca.push(element.VCA);
             date.push(element.date);
             pa.push(element.PA);
-            pb.push(element.PB);
-            pc.push(element.PC);
             sensor.push(element.Sensor);
           });
           await that.setState({ c1: c1 });
@@ -189,8 +168,6 @@ class ControlPage extends Component {
           await that.setState({ vca: vca });
           await that.setState({ date: date });
           await that.setState({ pa: pa });
-          await that.setState({ pb: pb });
-          await that.setState({ pc: pc });
           await that.setState({ sensor: sensor });
         }
       });
@@ -205,8 +182,6 @@ class ControlPage extends Component {
     this.setState({ vca: [] });
     this.setState({ date: [] });
     this.setState({ pa: [] });
-    this.setState({ pb: [] });
-    this.setState({ pc: [] });
     this.setState({ sensor: [] });
   };
 
@@ -220,8 +195,6 @@ class ControlPage extends Component {
       vbc: this.state.vbc,
       vca: this.state.vca,
       pa: this.state.pa,
-      pb: this.state.pb,
-      pc: this.state.pc,
       sensor: this.state.sensor
     };
     return (

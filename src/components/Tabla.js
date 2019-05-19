@@ -35,9 +35,9 @@ const styles = theme => ({
 });
 
 let id = 0;
-function createData(date, c1, c2, c3, vab, vbc, vca, pa, pb, pc, sensor) {
+function createData(date, c1, c2, c3, vab, vbc, vca, pa, sensor) {
   id += 1;
-  return { id, date, c1, c2, c3, vab, vbc, vca, pa, pb, pc, sensor};
+  return { id, date, c1, c2, c3, vab, vbc, vca, pa, sensor};
 }
 const rows=[]
 function CustomizedTable(props) {
@@ -53,8 +53,6 @@ function CustomizedTable(props) {
       props.datos.vbc[i],
       props.datos.vca[i],
       props.datos.pa[i],
-      props.datos.pb[i],
-      props.datos.pc[i],
       props.datos.sensor[i]))
   }
   return (
@@ -69,9 +67,7 @@ function CustomizedTable(props) {
             <CustomTableCell align="right">Voltaje A-B</CustomTableCell>
             <CustomTableCell align="right">Voltaje B-C</CustomTableCell>
             <CustomTableCell align="right">Voltaje C-A</CustomTableCell>
-            <CustomTableCell align="right">Potencia A</CustomTableCell>
-            <CustomTableCell align="right">Potencia B</CustomTableCell>
-            <CustomTableCell align="right">Potencia C</CustomTableCell>
+            <CustomTableCell align="right">Potencia Activa Total</CustomTableCell>
             <CustomTableCell align="right">Sensor</CustomTableCell>
           </TableRow>
         </TableHead>

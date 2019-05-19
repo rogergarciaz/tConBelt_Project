@@ -24,8 +24,8 @@ class LandingPage extends React.Component {
              <br />
              <br />
              <h4 className="text-center">
-              Somos el sistema de gestión y telegestión de la banda transportadora del Laboratorio de Automatización Industrial de la Universidad del Norte.
-              Este proyecto inició en el año 2019 y fue elaborado por estudiantes de Ingenieria Electrónica para el uso de todo el departamento de Ingenieria Eléctrica y Electrónica.
+              Bienvenido al sistema de gestión y telegestión de la banda transportadora del Laboratorio de Automatización Industrial de la Universidad del Norte.
+              El sistema tConBelt es un módelo de solución para automatización industrial orientado a la Industria 4.0. El sistema diseñado y construido, ofrece al usuario de manera remota el control de velocidad, sensado de velocidad, y gestión de parámetros de consumo energético de la banda transportadora del laboratorio de Automatización Industrial, ya sea desde una interfaz web o móvil en Android. 
               </h4>  
               <br />
               <br /> 
