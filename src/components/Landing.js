@@ -30,8 +30,8 @@ class LandingPage extends React.Component {
               <br />
               <br /> 
               <div className="text-center">
-              <img  src="images/login.jpg" alt="logg" style={pStyle}/> 
-              <img  src="images/control.jpg" alt="con" style={pStyle}/> 
+              <img  src="images/logina.jpg" alt="logg" style={pStyle}/> 
+              <img  src="images/controla.jpg" alt="con" style={pStyle}/> 
               </div>     
               <br />   
             <h4 className="text-center">
@@ -39,7 +39,7 @@ class LandingPage extends React.Component {
               Revisa los datos actuales de la banda transportadora como lo son el consumo energético y la velocidad. 
               </h4> 
             <div className="login100-form-title p-b-70">
-              <a href="../files/PF_Instructivo_201830.pdf" download="tConBelt_Android">
+              <a href="../files/app-debug.apk" download="tConBelt_Android">
               <button className="btn btn-success" >
               Descargar APK
               </button>
@@ -51,7 +51,7 @@ class LandingPage extends React.Component {
               Descarga el manual de usuario del sistema tConBelt.
               </h4>
              <div className="login100-form-title p-b-70">
-             <a href="../files/PF_Instructivo_201830.pdf" download="tConBelt_Manual_Usuario.pdf">
+             <a href="../files/Manual_de_Usuario_tConBelt.pdf" download="tConBelt_Manual_Usuario.pdf">
               <button className="btn btn-success" >
               Manual de Usuario
               </button>

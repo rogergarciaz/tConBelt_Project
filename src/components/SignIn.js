@@ -44,7 +44,7 @@ class SignInForm extends Component {
   }
 
   onSubmit = (event) => {
-    const {
+    var {
       email,
       password,
     } = this.state;
@@ -53,12 +53,11 @@ class SignInForm extends Component {
       history,
     } = this.props;
 
-    const email1 = this.state.email
-    const password1 = this.state.password
+  
     const rememberMe  = this.state.rememberMe
     localStorage.setItem('rememberMe', rememberMe);
-    localStorage.setItem('email', rememberMe ? email1 : '');
-    localStorage.setItem('password', rememberMe ? password1 : '');
+    localStorage.setItem('email', rememberMe ? email: '');
+    localStorage.setItem('password', rememberMe ? password : '');
 
     auth.doSignInWithEmailAndPassword(email, password)
       .then(() => {
