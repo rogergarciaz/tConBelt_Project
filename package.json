@@ -10,7 +10,7 @@
     "chartjs": "^0.3.24",
     "firebase": "^5.0.4",
     "graceful-fs": "^4.1.15",
-    "jquery": "^1.9.1",
+    "jquery": "^3.4.0",
     "moment": "^2.24.0",
     "react": "^16.8.6",
     "react-activity": "^1.2.2",
