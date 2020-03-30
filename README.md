@@ -1,3 +1,4 @@
+# tConBelt
 The system for the automation and tele-management of the conveyor belt of the Laboratorio de Automatización Industrial (aka. tConBelt). The designed system allows the speed of the conveyor belt to be controlled by varying it from 0 Hz in steps of 9 to 60 Hz, and to review current and historical measurements obtained from both speed and energy consumption.
 The system has an inductive sensor, whose objective is to detect when the gear teeth pass in front of it and to send a logical high to the programable logic controller (PLC) when said detection occurs.
 The PLC is in charge of activating its outputs which are connected to terminals of the frequency inverter. The PLC additionally with the received signals by the inductive sensor it is in charge of counting the time per cycle which is stored in a storage register.
